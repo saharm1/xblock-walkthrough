@@ -1,0 +1,9 @@
+/* CSS for WalkthroughXBlock */
+
+.walkthrough_block .count {
+    font-weight: bold;
+}
+
+.walkthrough_block p {
+    cursor: pointer;
+}
