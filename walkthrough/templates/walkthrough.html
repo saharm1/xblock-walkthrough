@@ -1,5 +1,71 @@
-<div class="walkthrough_block">
-<p>WalkthroughXBlock: count is now
-    <span class='count'>{self.count}</span> (click me to increment).
+<link rel="stylesheet" type="text/css" href="/static/introjs.css">
+<!-- So is this script. -->
+<script src="/static/intro.js"></script>
+<script>
+    $(document).ready(function(){
+        addNavData();
+        $('#navmaker').on('click tap', function(){
+            introJs().start();
+        });
+    });
+
+    function addNavData(){
+        var navmaker = $('#navmaker');
+        navmaker.attr("data-step", "1");
+        navmaker.attr("data-intro", "Welcome to %%COURSE_DISPLAY_NAME%%! \<br/>\<br/>Click 'Next' for a brief walkthrough.");
+        navmaker.attr("data-position", "top");
+
+        var home = $('.course-tabs').find('a:contains("Course")');
+        home.attr("data-step", "2");
+        home.attr("data-intro", "You are currently on the Course page. Here you can find updates from the course team, along with the course outline. \<br/><br/>The next step will jump down to a different section of this page. Click 'Next' to view the course outline.");
+        home.attr("data-position", "right");
+
+        var course = $('main.course-outline');
+        course.attr("data-step", "3");
+        course.attr("data-intro", "The course outline is a table of contents of the course materials. Content may be released all at once, or on a schedule. \<br/>\<br/>Section titles often describe the content covered in them, or label the week.");
+        course.attr("data-position", "right");
+
+        var section = $('ol.block-tree').find('li:nth-child(1)').find('ol.outline-item.focusable');
+        section.attr("data-step", "4");
+        section.attr("data-intro", "Subsections contain a series of pages, or units. Any graded assignments or deadlines are noted below the subsection title. \<br/>\<br/>Click on a subsection to leave the outline and be taken to a page, or unit. You will find video lectures, PDFs or other files, assessments or other course tools, in a unit.");
+        section.attr("data-position", "right");
+
+        var discussion = $('.course-tabs').find('a:contains("Discussion")');
+        discussion.attr("data-step", "5");
+        discussion.attr("data-intro", "Access the Discussion forum to ask questions or engage in meaningful conversations about the course content.");
+        discussion.attr("data-position", "right");
+
+        var wikis = $('.course-tabs').find('a:contains("Wiki")');
+        wikis.attr("data-step", "6");
+        wikis.attr("data-intro", "The Wiki is crowd-sourced information. Anyone in this class can create and edit any article found here.");
+        wikis.attr("data-position", "left");
+
+        var progress = $('.course-tabs').find('a:contains("Progress")');
+        progress.attr("data-step", "7");
+        progress.attr("data-intro", "The Progress page lets you see how you are doing on graded assignments.");
+        progress.attr("data-position", "left");
+
+        var tools = $('.section:contains("Tools")');
+        tools.attr("data-step", "8");
+        tools.attr("data-intro", "'Bookmarks' contains shortcuts to course pages you bookmarked along the way. \<br/>\<br/>'Updates' is an archive of past messages on the Course page.");
+        tools.attr("data-position", "left");
+
+        var handouts = $('.section:contains("Handouts")');
+        handouts.attr("data-step", "9");
+        handouts.attr("data-intro", "'Course Handouts' is sometimes populated with links to files or additional resources from the course team. \<br/>\<br/>This concludes the Walkthrough. Thanks and enjoy your course!");
+        handouts.attr("data-position", "left");
+    }
+</script>
+
+<p style="color: #313533 !important;">New to %%COURSE_DISPLAY_NAME%%? Click on this button to get a quick tour of the most basic parts of the course.</p>
+
+<button id="navmaker" style="padding: 10px; font-family: Source Sans Pro, Open Sans,Verdana,Geneva,sans-serif,sans-serif; color: white; font-size: medium; text-shadow: none; background: linear-gradient(to bottom,#6F9593 0%,#376372 50%,#194a63 50%,#204f65 100%); background: -webkit-linear-gradient(top, #6F9593 0%,#376372 50%,#194a63 50%,#204f65 100%); background-color:#green;" data-step="1" data-intro="Welcome to %%COURSE_DISPLAY_NAME%%! Click 'Next' for a brief walkthrough." data-position="top">How Do I Use This Course?</button>
+<p>
+    <br>
 </p>
-</div>
+<style type="text/css">
+    button#navmaker:hover {
+        background: -webkit-linear-gradient(top, #5F9593 0%,#376372 50%,#194a63 50%,#204f65 100%) !important;
+        background: linear-gradient(to bottom,#416564 0%,#376372 50%,#194a63 50%,#113342 100%) !important;
+    }
+</style>

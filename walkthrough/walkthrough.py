@@ -2,9 +2,16 @@
 
 import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope
+from xblock.fields import Integer, Scope, String, List, Float
 from xblock.fragment import Fragment
+from django.template import Context, Template
+from django.template.loader import get_template
 
+
+def _resource_string(path):
+    """Handy helper for getting resources from our kit."""
+    data = pkg_resources.resource_string(__name__, path)
+    return data.decode("utf8")
 
 class WalkthroughXBlock(XBlock):
     """
@@ -20,10 +27,15 @@ class WalkthroughXBlock(XBlock):
         help="A simple counter, to show something happening",
     )
 
-    def resource_string(self, path):
-        """Handy helper for getting resources from our kit."""
-        data = pkg_resources.resource_string(__name__, path)
-        return data.decode("utf8")
+
+    def build_fragment(
+        self,
+        template,
+        contect_dict,
+    ):
+        context = Context(contect_dict)
+        fragment = Fragment(template.render(context))
+        return fragment
 
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
@@ -31,12 +43,25 @@ class WalkthroughXBlock(XBlock):
         The primary view of the WalkthroughXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("templates/walkthrough.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/walkthrough.css"))
-        frag.add_javascript(self.resource_string("static/js/src/walkthrough.js"))
-        frag.initialize_js('WalkthroughXBlock')
-        return frag
+        context = context or {}
+        context.update(
+            {
+                'class_name': 'try',
+            }
+        )
+        template = get_template('walkthrough.html')
+        fragment = self.build_fragment(
+            template,
+            context
+        )
+        fragment.add_css(
+            _resource_string(
+                'static/css/walkthrough.css'
+            ),
+        )
+        fragment.add_javascript(_resource_string('static/js/src/walkthrough.js'))
+        fragment.initialize_js('WalkthroughXBlock')
+        return fragment
 
     # TO-DO: change this handler to perform your own actions.  You may need more
     # than one handler, or you may not need any handlers at all.
