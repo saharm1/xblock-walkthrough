@@ -28,85 +28,22 @@
   **************************************************************/
   function addNavData(){
 
-    var navmaker = $('#navmaker');
-    navmaker.attr("data-step", "1");
-    navmaker.attr("data-intro", "Welcome to the platform walkthrough tour! Let's start by exploring the tabs at the top of the page.");
-    navmaker.attr("data-position", "right");
-
-    var courseware = $('.course-tabs').find('a:contains("Course")');
-    courseware.attr("data-step", "2");
-    courseware.attr("data-intro", "You are in the Course tab, where all the materials are found.");
-    courseware.attr("data-position", "right");
-
-    var welc = $('div#seq_content');
-    welc.attr("data-step", "3");
-    welc.attr("data-intro", "You are looking at content in a page, or unit.");
-    welc.attr("data-position", "top");
-
-    var introd1 = $('.nav-item.nav-item-sequence');
-    introd1.attr("data-step", "4");
-    introd1.attr("data-intro", "Notice the trail of breadcrumb links above the content. \<br/>\ \<br/>\You are currently on a page, or unit...");
-    introd1.attr("data-position", "below");
-
-    var introd2 = $('.nav-item.nav-item-section');
-    introd2.attr("data-step", "5");
-    introd2.attr("data-intro", "...in a lesson, or subsection...");
-    introd2.attr("data-position", "below");
-
-    var introd3 = $('.nav-item.nav-item-chapter');
-    introd3.attr("data-step", "6");
-    introd3.attr("data-intro", "...in a module, or section. \<br/>\ \<br/>\Clicking on a breadcrumb will take you to your course's table of contents, and drop you onto the portion related to the section or subsection you clicked on.");
-    introd3.attr("data-position", "right");
-
-    var introd4 = $('.nav-item.nav-item-course');
-    introd4.attr("data-step", "7");
-    introd4.attr("data-intro", "This \"Course\" link will also take you to the table of contents, but to the beginning, as opposed to a specific section or subsection.");
-    introd4.attr("data-position", "right");
-
-     var nexttab=$('#sequence-list');
-    nexttab.attr("data-step", "8");
-    nexttab.attr("data-intro","Every lesson or subsection is structured as a sequence of pages, or units. Each button on this navigator corresponds to a page of content. You should go through the pages from left to right.");
-    nexttab.attr("data-position","left");
-
-    var nexttab2=$('#tab_0');
-    nexttab2.attr("data-step", "9");
-    nexttab2.attr("data-intro","You are currently viewing the first page of content.");
-    nexttab2.attr("data-position","left");
-
-    var nexttab3=$('#tab_1');
-    nexttab3.attr("data-step", "10");
-    nexttab3.attr("data-intro","Move to the next page of content by clicking the icon in the highlighted tab...");
-    nexttab3.attr("data-position","left");
-
-    var nexttab4=$('.sequence-nav').find('.sequence-nav-button.button-next');
-    nexttab4.attr("data-step", "11");
-    nexttab4.attr("data-intro","...or the arrow to the right.");
-    nexttab4.attr("data-position","left");
-
-    var bookmark=$('.bookmark-button-wrapper').find('button');
-    bookmark.attr("data-step", "12");
-    bookmark.attr("data-intro","If you want to get back later to the content on a particular page, or you want to save it as something important, bookmark it. A Bookmarks folder on your course home page will contain a link to any page you bookmark for easy access later.");
-    bookmark.attr("data-position","right");
-
-    var progress=$('.course-tabs').find('a:contains("Progress")');
-    progress.attr("data-step", "13");
-    progress.attr("data-intro","Visit the Progress page to check your scores on graded content in the course.");
-    progress.attr("data-position","left");
-
-    var help1=$('.course-tabs').find('a:contains("Discussion")');
-    help1.attr("data-step", "14");
-    help1.attr("data-intro","For course-specific questions, click on the \"Discussion\" tab to post your question to the forum. Peers and course teams may be able to answer your question there.");
-    help1.attr("data-position","left");
-
-    var help2=$('a.doc-link');
-    help2.attr("data-step", "15");
-    help2.attr("data-intro","For any technical issues or platform-specific questions, click on the \"Help\" link to access the Help Center or contact support.");
-    help2.attr("data-position","bottom");
-
-    var end=$('div.course-wrapper');
-    end.attr("data-step", "16");
-    end.attr("data-intro","That concludes the platform tour. \<br/>\ \<br/>\Click Done to close this walkthrough.");
-    end.attr("data-position","top");
+    var walkthroughData = [];
+    var stepList = {{steps|safe}};
+    var stepCount = 0;
+    stepList.forEach(function(step) {
+        if (step.find) {
+            walkthroughData.push($(step.name).find(step.find));
+        } else {
+            walkthroughData.push($(step.name));
+        }
+        if (walkthroughData[stepCount]) {
+            walkthroughData[stepCount].attr("data-step", step.dataStep);
+            walkthroughData[stepCount].attr("data-intro", step.dataIntro);
+            walkthroughData[stepCount].attr("data-position", step.dataPosition);
+        }
+        stepCount += 1;
+    });
   }
 </script>
 
