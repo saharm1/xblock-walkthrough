@@ -1,71 +1,158 @@
-<link rel="stylesheet" type="text/css" href="/static/introjs.css">
+<article><!-- This style sheet is necessary for the intro.js text blocks to work. -->
+<link rel="stylesheet" type="text/css" href="/static/introjs.css"> 
+
 <!-- So is this script. -->
 <script src="/static/intro.js"></script>
+
 <script>
-    $(document).ready(function(){
-        addNavData();
-        $('#navmaker').on('click tap', function(){
-            introJs().start();
-        });
+  $(document).ready(function(){
+
+    /*****************************************************
+    * This section enables the intro.js text blocks.
+    * They're set in the addNavData() function below.
+    *****************************************************/
+
+    addNavData();
+
+    $('#navmaker').on('click tap', function(){
+    	introJs().start();
     });
 
-    function addNavData(){
-        var navmaker = $('#navmaker');
-        navmaker.attr("data-step", "1");
-        navmaker.attr("data-intro", "Welcome to %%COURSE_DISPLAY_NAME%%! \<br/>\<br/>Click 'Next' for a brief walkthrough.");
-        navmaker.attr("data-position", "top");
+    // End of intro.js code.
 
-        var home = $('.course-tabs').find('a:contains("Course")');
-        home.attr("data-step", "2");
-        home.attr("data-intro", "You are currently on the Course page. Here you can find updates from the course team, along with the course outline. \<br/><br/>The next step will jump down to a different section of this page. Click 'Next' to view the course outline.");
-        home.attr("data-position", "right");
+  });
 
-        var course = $('main.course-outline');
-        course.attr("data-step", "3");
-        course.attr("data-intro", "The course outline is a table of contents of the course materials. Content may be released all at once, or on a schedule. \<br/>\<br/>Section titles often describe the content covered in them, or label the week.");
-        course.attr("data-position", "right");
+  /**************************************************************
+  * This function adds the data needed for the intro.js text blocks.
+  * We're doing it here rather than in the HTML directly.
+  **************************************************************/
+  function addNavData(){
 
-        var section = $('ol.block-tree').find('li:nth-child(1)').find('ol.outline-item.focusable');
-        section.attr("data-step", "4");
-        section.attr("data-intro", "Subsections contain a series of pages, or units. Any graded assignments or deadlines are noted below the subsection title. \<br/>\<br/>Click on a subsection to leave the outline and be taken to a page, or unit. You will find video lectures, PDFs or other files, assessments or other course tools, in a unit.");
-        section.attr("data-position", "right");
+    var navmaker = $('#navmaker');
+    navmaker.attr("data-step", "1");
+    navmaker.attr("data-intro", "Welcome to the platform walkthrough tour! Let's start by exploring the tabs at the top of the page.");
+    navmaker.attr("data-position", "right");
 
-        var discussion = $('.course-tabs').find('a:contains("Discussion")');
-        discussion.attr("data-step", "5");
-        discussion.attr("data-intro", "Access the Discussion forum to ask questions or engage in meaningful conversations about the course content.");
-        discussion.attr("data-position", "right");
+    var courseware = $('.course-tabs').find('a:contains("Course")');
+    courseware.attr("data-step", "2");
+    courseware.attr("data-intro", "You are in the Course tab, where all the materials are found.");
+    courseware.attr("data-position", "right");
 
-        var wikis = $('.course-tabs').find('a:contains("Wiki")');
-        wikis.attr("data-step", "6");
-        wikis.attr("data-intro", "The Wiki is crowd-sourced information. Anyone in this class can create and edit any article found here.");
-        wikis.attr("data-position", "left");
+    var welc = $('div#seq_content');
+    welc.attr("data-step", "3");
+    welc.attr("data-intro", "You are looking at content in a page, or unit.");
+    welc.attr("data-position", "top");
 
-        var progress = $('.course-tabs').find('a:contains("Progress")');
-        progress.attr("data-step", "7");
-        progress.attr("data-intro", "The Progress page lets you see how you are doing on graded assignments.");
-        progress.attr("data-position", "left");
+    var introd1 = $('.nav-item.nav-item-sequence');
+    introd1.attr("data-step", "4");
+    introd1.attr("data-intro", "Notice the trail of breadcrumb links above the content. \<br/>\ \<br/>\You are currently on a page, or unit...");
+    introd1.attr("data-position", "below");
 
-        var tools = $('.section:contains("Tools")');
-        tools.attr("data-step", "8");
-        tools.attr("data-intro", "'Bookmarks' contains shortcuts to course pages you bookmarked along the way. \<br/>\<br/>'Updates' is an archive of past messages on the Course page.");
-        tools.attr("data-position", "left");
+    var introd2 = $('.nav-item.nav-item-section');
+    introd2.attr("data-step", "5");
+    introd2.attr("data-intro", "...in a lesson, or subsection...");
+    introd2.attr("data-position", "below");
 
-        var handouts = $('.section:contains("Handouts")');
-        handouts.attr("data-step", "9");
-        handouts.attr("data-intro", "'Course Handouts' is sometimes populated with links to files or additional resources from the course team. \<br/>\<br/>This concludes the Walkthrough. Thanks and enjoy your course!");
-        handouts.attr("data-position", "left");
-    }
+    var introd3 = $('.nav-item.nav-item-chapter');
+    introd3.attr("data-step", "6");
+    introd3.attr("data-intro", "...in a module, or section. \<br/>\ \<br/>\Clicking on a breadcrumb will take you to your course's table of contents, and drop you onto the portion related to the section or subsection you clicked on.");
+    introd3.attr("data-position", "right");
+
+    var introd4 = $('.nav-item.nav-item-course');
+    introd4.attr("data-step", "7");
+    introd4.attr("data-intro", "This \"Course\" link will also take you to the table of contents, but to the beginning, as opposed to a specific section or subsection.");
+    introd4.attr("data-position", "right");
+
+     var nexttab=$('#sequence-list');
+    nexttab.attr("data-step", "8");
+    nexttab.attr("data-intro","Every lesson or subsection is structured as a sequence of pages, or units. Each button on this navigator corresponds to a page of content. You should go through the pages from left to right.");
+    nexttab.attr("data-position","left");
+
+    var nexttab2=$('#tab_0');
+    nexttab2.attr("data-step", "9");
+    nexttab2.attr("data-intro","You are currently viewing the first page of content.");
+    nexttab2.attr("data-position","left");
+
+    var nexttab3=$('#tab_1');
+    nexttab3.attr("data-step", "10");
+    nexttab3.attr("data-intro","Move to the next page of content by clicking the icon in the highlighted tab...");
+    nexttab3.attr("data-position","left");
+
+    var nexttab4=$('.sequence-nav').find('.sequence-nav-button.button-next');
+    nexttab4.attr("data-step", "11");
+    nexttab4.attr("data-intro","...or the arrow to the right.");
+    nexttab4.attr("data-position","left");
+
+    var bookmark=$('.bookmark-button-wrapper').find('button');
+    bookmark.attr("data-step", "12");
+    bookmark.attr("data-intro","If you want to get back later to the content on a particular page, or you want to save it as something important, bookmark it. A Bookmarks folder on your course home page will contain a link to any page you bookmark for easy access later.");
+    bookmark.attr("data-position","right");
+
+    var progress=$('.course-tabs').find('a:contains("Progress")');
+    progress.attr("data-step", "13");
+    progress.attr("data-intro","Visit the Progress page to check your scores on graded content in the course.");
+    progress.attr("data-position","left");
+
+    var help1=$('.course-tabs').find('a:contains("Discussion")');
+    help1.attr("data-step", "14");
+    help1.attr("data-intro","For course-specific questions, click on the \"Discussion\" tab to post your question to the forum. Peers and course teams may be able to answer your question there.");
+    help1.attr("data-position","left");
+
+    var help2=$('a.doc-link');
+    help2.attr("data-step", "15");
+    help2.attr("data-intro","For any technical issues or platform-specific questions, click on the \"Help\" link to access the Help Center or contact support.");
+    help2.attr("data-position","bottom");
+
+    var end=$('div.course-wrapper');
+    end.attr("data-step", "16");
+    end.attr("data-intro","That concludes the platform tour. \<br/>\ \<br/>\Click Done to close this walkthrough.");
+    end.attr("data-position","top");
+  }
 </script>
 
-<p style="color: #313533 !important;">New to %%COURSE_DISPLAY_NAME%%? Click on this button to get a quick tour of the most basic parts of the course.</p>
+  <p></p>
+<p>{{ intro }}</p>
 
-<button id="navmaker" style="padding: 10px; font-family: Source Sans Pro, Open Sans,Verdana,Geneva,sans-serif,sans-serif; color: white; font-size: medium; text-shadow: none; background: linear-gradient(to bottom,#6F9593 0%,#376372 50%,#194a63 50%,#204f65 100%); background: -webkit-linear-gradient(top, #6F9593 0%,#376372 50%,#194a63 50%,#204f65 100%); background-color:#green;" data-step="1" data-intro="Welcome to %%COURSE_DISPLAY_NAME%%! Click 'Next' for a brief walkthrough." data-position="top">How Do I Use This Course?</button>
+<button id="navmaker" style="color: white; font-size: medium; text-shadow: none; background: linear-gradient(to top, #0b0 0%,#080 20%,#0e0 100%); background-color:green;" data-step="1" data-intro="Welcome to the Blended and Online Learning Design from Stanford Course! Click on the Next button or press the right arrow key to continue." data-position="right"> {{ button_label }}</button>
+</article>
+
 <p>
-    <br>
+<script>
+function unhide(spanID) {
+  var item = document.getElementById(spanID);
+  if (item) {
+    item.className=(item.className=='hidden')?'unhidden':'hidden';
+  }
+}
+
+function hide(spanID) {
+  var item = document.getElementById(spanID);
+  if (item) {
+    item.className='hidden';
+  }
+}
+
+function check(RadioID){
+  document.getElementById(RadioID).checked=true;
+}
+
+function changeHiddenInput (objDropDown, hiddenID){
+  var objHidden = document.getElementById(hiddenID);
+  var strUser = objDropDown.options[objDropDown.selectedIndex].value;
+  objHidden.value = strUser;
+}
+</script>
 </p>
-<style type="text/css">
-    button#navmaker:hover {
-        background: -webkit-linear-gradient(top, #5F9593 0%,#376372 50%,#194a63 50%,#204f65 100%) !important;
-        background: linear-gradient(to bottom,#416564 0%,#376372 50%,#194a63 50%,#113342 100%) !important;
-    }
-</style>
+<h4><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e" style="float: left;"></span><span style="cursor: pointer;" onclick="unhide('screen-reader-version')">Screen Reader Accessible Version of the  Walkthrough</span></h4>
+<p></p>
+<div id="screen-reader-version" class="hidden" style="padding-bottom: 1em;">
+<p>At the top of the screen are several tabs.</p>
+<ul>
+<li>The <b>Course</b>&nbsp;tab is where all of the materials are kept, including videos, assignments, and readings. Any new updates from the course team can also be found on this page.</li>
+<li>The <b>Discussion</b>&nbsp;tab is present in some but not all courses. This is where conversations with peers can be had.</li>
+<li>The <b>Progress</b>&nbsp;tab is also present in some but not all courses. This is where you can keep track of your work in the course.</li>
+</ul>
+<p>Each lesson is divided into a sequence of pages, which are accessed through a navigator ribbon that runs horizontally across the top of the screen.</p>
+<p>You are currently viewing the first page of content in the Course tab.</p>
+<p>The lessons are designed to be accessed from left to right. When you are done with this platform walkthrough, click either the Next button in the navigator ribbon or the right arrow.</p>
+</div>

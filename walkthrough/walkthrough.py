@@ -1,32 +1,53 @@
-"""TO-DO: Write a description of what this XBlock is."""
-
+"""
+This is the core logic for the walkthrough xblock, which introduces students to
+a course through a digital tour.
+"""
 import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String, List, Float
 from xblock.fragment import Fragment
 from django.template import Context, Template
 from django.template.loader import get_template
-
+from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 def _resource_string(path):
     """Handy helper for getting resources from our kit."""
     data = pkg_resources.resource_string(__name__, path)
     return data.decode("utf8")
 
-class WalkthroughXBlock(XBlock):
+class WalkthroughXBlock(XBlock, StudioEditableXBlockMixin):
     """
-    TO-DO: document what your XBlock does.
+    Allows students to tour through the course and get familiar with the
+    platform.
     """
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
-    count = Integer(
-        default=0, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
+    button_label = String(
+        display_name=('Button label'),
+        help=('This is the text that will appear on the button'),
+        default='Begin walkthrough',
+        scope=Scope.settings,
     )
 
+    intro = String(
+        display_name=('Introduction text'),
+        help=('This is the introduction that will precede the button'
+            ' and explain its presence to the user'),
+        default='Click the button below to learn how to navigate the platform!',
+        scope=Scope.settings,
+    )
+
+    steps = List(
+        display_name=('Steps in the walkthrough'),
+        help=('Data representing the steps that the XBlock goes through'),
+        default=[{'step': 1, 'message':'help'}],
+        scope=Scope.settings,
+    )
+
+    editable_fields = (
+        'button_label',
+        'intro',
+        'steps',
+    )
 
     def build_fragment(
         self,
@@ -37,7 +58,6 @@ class WalkthroughXBlock(XBlock):
         fragment = Fragment(template.render(context))
         return fragment
 
-    # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
         The primary view of the WalkthroughXBlock, shown to students
@@ -46,7 +66,8 @@ class WalkthroughXBlock(XBlock):
         context = context or {}
         context.update(
             {
-                'class_name': 'try',
+                'button_label': self.button_label,
+                'intro': self.intro,
             }
         )
         template = get_template('walkthrough.html')
