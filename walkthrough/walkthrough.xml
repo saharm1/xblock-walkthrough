@@ -1,0 +1,265 @@
+<walkthrough schema_version='1'>
+    <step>
+        <name>
+            #navmaker
+        </name>
+        <dataStep>
+            1
+        </dataStep>
+        <dataIntro>
+            Welcome to the platform walkthrough tour! Let's start by
+            exploring the tabs at the top of the page.
+        </dataIntro>
+        <dataPosition>
+             right
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .course-tabs
+        </name>
+        <find>
+            a:contains("Course")
+        </find>
+        <dataStep>
+            2
+        </dataStep>
+        <dataIntro>
+            You are in the Course tab, where all the materials are
+            found.
+        </dataIntro>
+        <dataPosition>
+            right
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            div#seq_content
+        </name>
+        <dataStep>
+            3
+        </dataStep>
+        <dataIntro>
+            You are looking at content in a page, or unit.
+        </dataIntro>
+        <dataPosition>
+            top
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .nav-item.nav-item-sequence
+        </name>
+        <dataStep>
+            4
+        </dataStep>
+        <dataIntro>
+            Notice the trail of breadcrumb links above the content.
+            You are currently on a page, or unit...
+        </dataIntro>
+        <dataPosition>
+            below
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .nav-item.nav-item-section
+        </name>
+        <dataStep>
+            5
+        </dataStep>
+        <dataIntro>
+            ...in a lesson, or subsection...
+        </dataIntro>
+        <dataPosition>
+            below
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .nav-item.nav-item-chapter
+        </name>
+        <dataStep>
+            6
+        </dataStep>
+        <dataIntro>
+            ...in a module, or section.
+            Clicking on a breadcrumb will take you to your 
+            course's table of contents, and drop you onto the 
+            portion related to the section or subsection you 
+            clicked on.
+        </dataIntro>
+        <dataPosition>
+            right
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .nav-item.nav-item-course
+        </name>
+        <dataStep>
+            7
+        </dataStep>
+        <dataIntro>
+            This "Course" link will also take you to the table of
+            contents, but to the beginning, as opposed to a specific
+            section or subsection.
+        </dataIntro>
+        <dataPosition>
+            right
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            #sequence-list
+        </name>
+        <dataStep>
+            8
+        </dataStep>
+        <dataIntro>
+            Every lesson or subsection is structured as a sequence
+            of pages, or units. Each button on this navigator
+            corresponds to a page of content. You should go through
+            the pages from left to right.
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            #tab_0
+        </name>
+        <dataStep>
+            9
+        </dataStep>
+        <dataIntro>
+            You are currently viewing the first page of content.
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            #tab_1
+        </name>
+        <dataStep>
+            10
+        </dataStep>
+        <dataIntro>
+            Move to the next page of content by clicking the icon in
+            the highlighted tab...
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .sequence-nav
+        </name>
+        <find>
+            .sequence-nav-button.button-next
+        </find>
+        <dataStep>
+            11
+        </dataStep>
+        <dataIntro>
+            ...or the arrow to the right.
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .bookmark-button-wrapper
+        </name>
+        <find>
+            button
+        </find>
+        <dataStep>
+            12
+        </dataStep>
+        <dataIntro>
+            If you want to get back later to the content on a
+            particular page, or you want to save it as something
+            important, bookmark it. A Bookmarks folder on your
+            course home page will contain a link to any page you
+            bookmark for easy access later.
+        </dataIntro>
+        <dataPosition>
+            right
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .course-tabs
+        </name>
+        <find>
+            a:contains("Progress")
+        </find>
+        <dataStep>
+            13
+        </dataStep>
+        <dataIntro>
+            Visit the Progress page to check your scores on graded
+            content in the course.
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            .course-tabs
+        </name>
+        <find>
+            a:contains("Discussion")
+        </find>
+        <dataStep>
+            14
+        </dataStep>
+        <dataIntro>
+            For course-specific questions, click on the
+            "Discussion" tab to post your question to the forum.
+            Peers and course teams may be able to answer your
+            question there.
+        </dataIntro>
+        <dataPosition>
+            left
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            a.doc-link
+        </name>
+        <dataStep>
+            15
+        </dataStep>
+        <dataIntro>
+            For any technical issues or platform-specific questions,
+            click on the "Help" link to access the Help Center or
+            contact support.
+        </dataIntro>
+        <dataPosition>
+            bottom
+        </dataPosition>
+    </step>
+    <step>
+        <name>
+            div.course-wrapper
+        </name>
+        <dataStep>
+            16
+        </dataStep>
+        <dataIntro>
+            That concludes the platform tour.
+            Click Done to close this walkthrough.
+        </dataIntro>
+        <dataPosition>
+            top
+        </dataPosition>
+    </step>
+</walkthrough>

@@ -1,8 +1,8 @@
 <article><!-- This style sheet is necessary for the intro.js text blocks to work. -->
-<link rel="stylesheet" type="text/css" href="/static/introjs.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/walkthrough.css">
 
 <!-- So is this script. -->
-<script src="/static/intro.js"></script>
+<script src="/static/js/src/walkthrough.js"></script>
 
 <script>
   $(document).ready(function(){
@@ -31,7 +31,9 @@
     var walkthroughData = [];
     var stepList = {{steps|safe}};
     var stepCount = 0;
-    stepList.forEach(function(step) {
+
+    stepList.forEach(function(unconvertedStep) {
+        var step = JSON.parse(unconvertedStep);
         if (step.find) {
             walkthroughData.push($(step.name).find(step.find));
         } else {
@@ -44,6 +46,21 @@
         }
         stepCount += 1;
     });
+    /*parser = new DOMParser();
+    xmlDoc = parser.parseFromString(stepList, "text/xml");
+    console.log(xmlDoc);
+    steps = xmlDoc.getElementsByTagName("step");
+
+    for (var step in steps) {
+        var stepName =
+        steps[step].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+    `    console.log(stepName);
+    }
+
+    /*for(var item in title) {
+        document.getElementById("demo").innerHTML =
+        title[item].childNodes[0].nodeValue;
+    }*/
   }
 </script>
 
