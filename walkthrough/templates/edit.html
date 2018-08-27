@@ -1,0 +1,44 @@
+<div class="wrapper-comp-settings editor-with-buttons is-active" id="settings-tab">
+    <ul class="list-input settings-list">
+         <li class="field comp-setting-entry is-set">
+            <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="walkthrough_edit_button_label">
+                    Button Label</label>
+                <input class="input setting-input" id="walkthrough_edit_button_label" value="{{ button_label }}" type="text">
+            </div>
+            <span class="tip setting-help">This is the text that will appear on the button</span>
+        </li>
+
+        <li class="field comp-setting-entry is-set">
+          <div class="wrapper-comp-setting">
+                <label class="label setting-label" for="walkthrough_edit_intro">Introduction text</label>
+                <input class="input setting-input" id="walkthrough_edit_intro" value="{{ intro }}" type="text">
+          </div>
+          <span class="tip setting-help">This is the introduction that will precede the button and explain its presence to the user</span>
+        </li>
+        
+        <li class="field comp-setting-entry is-set">
+          <div class="wrapper-comp-setting">
+            <label class="label setting-label" for="edit_data">Steps in the walkthrough</label>
+            <span class="tip setting-help">The XML definition for the steps the XBlock goes through</span>
+            <div class='codemirror-editor-wrapper'>
+              <textarea class="block-xml-editor edit-data">{{ steps }}</textarea>
+            </div>
+          </div>
+      </li>
+
+    </ul>
+    
+    <div class="xblock-actions">
+        <ul>
+            <li class="action-item">
+                <a href="#" class="button action-primary action-save">Save</a>
+            </li>
+            <li class="action-item">
+                <a href="#" class="button action-cancel">Cancel</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

@@ -4,6 +4,7 @@ a course through a digital tour.
 """
 import json
 import os
+from StringIO import StringIO
 from xml.dom import minidom
 import pkg_resources
 from django.template import Context
@@ -12,7 +13,6 @@ from lxml import etree
 from xblock.core import XBlock
 from xblock.fields import Scope, String
 from xblock.fragment import Fragment
-from xblockutils.studio_editable import StudioEditableXBlockMixin
 import xmltodict
 
 
@@ -33,7 +33,7 @@ def _load_resource(resource_path):
     return unicode(resource_content)
 
 
-class WalkthroughXBlock(XBlock, StudioEditableXBlockMixin):
+class WalkthroughXBlock(XBlock):
     """
     Allows students to tour through the course and get familiar with the
     platform.
@@ -60,12 +60,6 @@ class WalkthroughXBlock(XBlock, StudioEditableXBlockMixin):
         help=('Data representing the steps that the XBlock goes through'),
         default=_load_resource('walkthrough.xml'),
         scope=Scope.content,
-    )
-
-    editable_fields = (
-        'button_label',
-        'intro',
-        'steps',
     )
 
     def build_fragment(
@@ -122,6 +116,43 @@ class WalkthroughXBlock(XBlock, StudioEditableXBlockMixin):
         )
         fragment.initialize_js('WalkthroughXBlock')
         return fragment
+
+    def studio_view(self, context=None):
+        context = context or {}
+        context.update(
+            {
+                'button_label': self.button_label,
+                'intro': self.intro,
+                'steps': self.steps,
+            }
+        )
+        template = get_template('edit.html')
+        fragment = self.build_fragment(
+            template,
+            context
+        )
+        fragment.add_javascript(
+            _resource_string('static/js/src/edit.js')
+        )
+        fragment.initialize_js('WalkthroughXBlockEdit')
+        return fragment
+
+    @XBlock.json_handler
+    def studio_submit(self, submissions, suffix=''):
+        self.button_label = submissions['button_label']
+        self.intro = submissions['intro']
+        xml_content = submissions['steps']
+        try:
+            etree.parse(StringIO(xml_content))
+            self.steps = xml_content
+        except etree.XMLSyntaxError as error:
+            return {
+                'result': 'error',
+                'message': error.message,
+            }
+        return {
+            'result': 'success',
+        }
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
