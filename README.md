@@ -49,10 +49,10 @@ The Walkthrough XBlock uses a simple XML-based structure as shown below:
 </walkthrough>
 ```
 To add a new step, first add the opening and closing tags, <step> and </step>. 
-Inside, the tags <name>, <dataStep>, <dataIntro>, and <dataPosition> must be defined, with the option of defining find. 
+Inside, the tags `<name>`, `<dataStep>`, `<dataIntro>`, and `<dataPosition>` must be defined, with the option of defining `<find>`. 
 
-<name>: the name of the html element, found by inspecting the page. 
-<find>: further specification on the element to be highlighted (when found inside another element).
-<dataStep>: the step number in the walkthrough process.
-<dataIntro>: the text that will appear to explain the element.
-<dataPosition>: where relative to the element the text will appear (top, bottom, right, left).
+`<name>`: the name of the html element, found by inspecting the page. 
+`<find>`: further specification on the element to be highlighted (when found inside another element).
+`<dataStep>`: the step number in the walkthrough process.
+`<dataIntro>`: the text that will appear to explain the element.
+`<dataPosition>`: where relative to the element the text will appear (top, bottom, right, left).
