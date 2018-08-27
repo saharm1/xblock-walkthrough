@@ -24,7 +24,7 @@ After you've selected the Walkthrough XBlock, a default set of steps will be ins
 
 Customization
 -------------
-The button label, introduction, and steps can both be customized by clicking the `Edit` button on the component:
+The button label, introduction, and steps can both be customized by clicking the `Edit` button on the component.
 
 The Walkthrough XBlock uses a simple XML-based structure as shown below:
 ```bash
