@@ -140,7 +140,7 @@ class WalkthroughXBlock(XBlock):
         return fragment
 
     @XBlock.json_handler
-    def studio_submit(self, submissions):
+    def studio_submit(self, submissions, suffix=''):
         """
         Save studio edits.
         """
