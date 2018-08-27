@@ -18,9 +18,9 @@ Usage
 ------------------
 Once the Walkthrough XBlock is enabled in Studio, you should see it a new Component button labeled `Advanced`:
 
-Click the `Advanced` button and you should see the Walkthrough XBlock listed
+Click the `Advanced` button and you should see the Walkthrough XBlock listed.
 
-After you've selected the Walkthrough XBlock, a default set of steps will be inserted into your unit:
+After you've selected the Walkthrough XBlock, a default set of steps will be inserted into your unit.
 
 Customization
 -------------
