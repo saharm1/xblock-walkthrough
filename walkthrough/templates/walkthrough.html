@@ -1,8 +1,8 @@
 <article><!-- This style sheet is necessary for the intro.js text blocks to work. -->
-<link rel="stylesheet" type="text/css" href="/static/introjs.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/walkthrough.css"> 
 
 <!-- So is this script. -->
-<script src="/static/intro.js"></script>
+<script src="/static/js/src/walkthrough.js"></script>
 
 <script>
   $(document).ready(function(){
@@ -38,7 +38,7 @@
             walkthroughData.push($(step.name));
         }
         if (walkthroughData[stepCount]) {
-            walkthroughData[stepCount].attr("data-step", step.dataStep);
+            walkthroughData[stepCount].attr("data-step", stepCount + 1);
             walkthroughData[stepCount].attr("data-intro", step.dataIntro);
             walkthroughData[stepCount].attr("data-position", step.dataPosition);
         }
@@ -50,7 +50,7 @@
   <p></p>
 <p>{{ intro }}</p>
 
-<button id="navmaker" style="color: white; font-size: medium; text-shadow: none; background: linear-gradient(to top, #0b0 0%,#080 20%,#0e0 100%); background-color:green;" data-step="1" data-intro="Welcome to the Blended and Online Learning Design from Stanford Course! Click on the Next button or press the right arrow key to continue." data-position="right"> {{ button_label }}</button>
+<button id="navmaker" style="color: white; font-size: medium; text-shadow: none; background: linear-gradient(to top, #0b0 0%,#080 20%,#0e0 100%); background-color:green;"> {{ button_label }}</button>
 </article>
 
 <p>
